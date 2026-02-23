@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F5F0E8">
+<title>Zing — À La Carte Apartment Cleaning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #F5F0E8;
+  --card: #FFFFFF;
+  --green: #2D6B5A;
+  --green-mid: #3A7D68;
+  --yellow: #FFD700;
+  --text: #1A1A1A;
+  --text2: #555;
+  --text3: #999;
+  --border: #D9D3C7;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background .3s, box-shadow .3s;
+}
+.nav.scrolled {
+  background: rgba(245,240,232,.95);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-logo img { height: 36px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a {
+  color: var(--text2); text-decoration: none;
+  font-size: 15px; font-weight: 700;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--green); }
+.nav-cta {
+  background: var(--yellow); color: var(--text);
+  padding: 10px 24px; border-radius: 50px;
+  font-weight: 800; font-size: 15px;
+  text-decoration: none; transition: transform .15s;
+}
+.nav-cta:active { transform: scale(.97); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav-toggle svg { width: 28px; height: 28px; stroke: var(--text); fill: none; stroke-width: 2.5; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; align-items: center;
+  padding: 120px 32px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: center;
+}
+.hero-text { max-width: 520px; }
+.hero-badge {
+  display: inline-flex; align-items: center;
+  background: var(--green); color: #fff;
+  font-size: 13px; font-weight: 800;
+  padding: 8px 18px; border-radius: 12px;
+  margin-bottom: 20px;
+  letter-spacing: .5px;
+}
+.hero h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900; line-height: 1.15;
+  color: var(--text); margin-bottom: 16px;
+}
+.hero h1 span { color: var(--green); }
+.hero-desc {
+  font-size: 18px; color: var(--text2);
+  line-height: 1.65; margin-bottom: 32px;
+  font-weight: 500;
+}
+.hero-buttons { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--yellow); color: var(--text);
+  padding: 16px 32px; border-radius: 50px;
+  font-family: inherit; font-size: 17px; font-weight: 800;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: transform .15s, box-shadow .2s;
+}
+.btn-primary:hover { box-shadow: 0 8px 24px rgba(255,215,0,.4); }
+.btn-primary:active { transform: scale(.97); }
+.btn-secondary {
+  color: var(--green); font-size: 16px; font-weight: 700;
+  text-decoration: none; padding: 16px 8px;
+  transition: color .2s;
+}
+.btn-secondary:hover { color: var(--text); }
+
+.hero-phone {
+  display: flex; justify-content: center;
+  position: relative;
+}
+.phone-frame {
+  position: relative;
+  width: 280px;
+  filter: drop-shadow(0 24px 48px rgba(0,0,0,.12));
+  animation: floatPhone 4s ease-in-out infinite;
+}
+.phone-frame img {
+  width: 100%; height: auto; border-radius: 36px;
+}
+@keyframes floatPhone {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ── TASK CAROUSEL ── */
+.carousel-section {
+  padding: 0 0 64px;
+  overflow: hidden;
+}
+.carousel-label {
+  text-align: center;
+  font-size: 13px; font-weight: 800;
+  color: var(--green); letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding: 0 32px;
+}
+.carousel-track-wrap { overflow: hidden; position: relative; }
+.carousel-track {
+  display: flex; gap: 14px;
+  animation: scrollTasks 35s linear infinite;
+  width: max-content;
+}
+.carousel-track:hover { animation-play-state: paused; }
+@keyframes scrollTasks {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.task-card {
+  background: var(--card);
+  border: 1.5px solid rgba(0,0,0,.04);
+  border-radius: 18px;
+  padding: 20px 16px 16px;
+  text-align: center;
+  min-width: 130px; flex-shrink: 0;
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+.task-emoji { font-size: 36px; margin-bottom: 8px; }
+.task-name { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.task-price { font-size: 17px; font-weight: 900; color: var(--green); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--green); color: rgba(255,255,255,.6);
+  padding: 40px 32px; text-align: center;
+}
+.footer-logo img { height: 32px; margin-bottom: 12px; }
+.footer p { font-size: 13px; }
+.footer a { color: rgba(255,255,255,.8); text-decoration: none; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.anim-in { animation: fadeUp .7s ease both; }
+.anim-d1 { animation-delay: .1s; }
+.anim-d2 { animation-delay: .2s; }
+.anim-d3 { animation-delay: .35s; }
+.anim-d4 { animation-delay: .5s; }
+.anim-d5 { animation-delay: .65s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .hero { padding: 100px 20px 32px; }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-text { max-width: 100%; }
+  .hero-buttons { justify-content: center; }
+  .hero-phone { order: -1; }
+  .phone-frame { width: 200px; }
+  .carousel-section { padding-bottom: 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <img src="assets/zing-logo-dark.svg" alt="Zing">
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#how">How It Works</a>
+    <a href="#" class="nav-cta">Get Started</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge anim-in anim-d1">À La Carte Cleaning</div>
+      <h1 class="anim-in anim-d2">Cleaning that fits <span>your life</span>, not the other way around</h1>
+      <p class="hero-desc anim-in anim-d3">Zing places a dedicated cleaner in your apartment building. Pick only the tasks you need — bathrooms, floors, dishes, folding — starting at just $3.</p>
+      <div class="hero-buttons anim-in anim-d4">
+        <a href="#" class="btn-primary">
+          Get Started
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn-secondary">See our services ↓</a>
+      </div>
+    </div>
+    <div class="hero-phone anim-in anim-d5">
+      <div class="phone-frame">
+        <img src="assets/app-screen1.png" alt="Zing App">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TASK CAROUSEL -->
+<section class="carousel-section" id="services">
+  <p class="carousel-label">Pick only what you need — 17 tasks and counting</p>
+  <div class="carousel-track-wrap">
+    <div class="carousel-track">
+      <div class="task-card"><div class="task-emoji">🛁</div><div class="task-name">Bathroom</div><div class="task-price">$23</div></div>
+      <div class="task-card"><div class="task-emoji">🧹</div><div class="task-name">Floors</div><div class="task-price">$14</div></div>
+      <div class="task-card"><div class="task-emoji">👕</div><div class="task-name">Folding</div><div class="task-price">$12</div></div>
+      <div class="task-card"><div class="task-emoji">🍽️</div><div class="task-name">Dishes</div><div class="task-price">$10</div></div>
+      <div class="task-card"><div class="task-emoji">🛏️</div><div class="task-name">Bed Making</div><div class="task-price">$10</div></div>
+      <div class="task-card"><div class="task-emoji">🗑️</div><div class="task-name">Trash Run</div><div class="task-price">$8</div></div>
+      <div class="task-card"><div class="task-emoji">🪟</div><div class="task-name">Windows</div><div class="task-price">$20</div></div>
+      <div class="task-card"><div class="task-emoji">🌿</div><div class="task-name">Plants</div><div class="task-price">$6</div></div>
+      <div class="task-card"><div class="task-emoji">✨</div><div class="task-name">Quick Tidy</div><div class="task-price">$16</div></div>
+      <!-- duplicate for infinite scroll -->
+      <div class="task-card"><div class="task-emoji">🛁</div><div class="task-name">Bathroom</div><div class="task-price">$23</div></div>
+      <div class="task-card"><div class="task-emoji">🧹</div><div class="task-name">Floors</div><div class="task-price">$14</div></div>
+      <div class="task-card"><div class="task-emoji">👕</div><div class="task-name">Folding</div><div class="task-price">$12</div></div>
+      <div class="task-card"><div class="task-emoji">🍽️</div><div class="task-name">Dishes</div><div class="task-price">$10</div></div>
+      <div class="task-card"><div class="task-emoji">🛏️</div><div class="task-name">Bed Making</div><div class="task-price">$10</div></div>
+      <div class="task-card"><div class="task-emoji">🗑️</div><div class="task-name">Trash Run</div><div class="task-price">$8</div></div>
+      <div class="task-card"><div class="task-emoji">🪟</div><div class="task-name">Windows</div><div class="task-price">$20</div></div>
+      <div class="task-card"><div class="task-emoji">🌿</div><div class="task-name">Plants</div><div class="task-price">$6</div></div>
+      <div class="task-card"><div class="task-emoji">✨</div><div class="task-name">Quick Tidy</div><div class="task-price">$16</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo"><img src="assets/zing-logo.svg" alt="Zing"></div>
+  <p>© 2025 Zing Cleaning. <a href="#">Get Started</a></p>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+</script>
+
+</body>
+</html>

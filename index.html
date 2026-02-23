@@ -70,10 +70,20 @@ body {
   position: relative;
   overflow: hidden;
 }
+.hero-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(245,240,232,.88), rgba(245,240,232,.75));
+  z-index: 1;
+}
 .hero-inner {
   max-width: 1200px; margin: 0 auto; width: 100%;
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 48px; align-items: center;
+  position: relative; z-index: 2;
 }
 .hero-text { max-width: 520px; }
 .hero-badge {
@@ -231,6 +241,10 @@ body {
 
 <!-- HERO -->
 <section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="assets/app-screen1.png">
+    <source src="assets/hero-video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-badge anim-in anim-d1">À La Carte Cleaning</div>

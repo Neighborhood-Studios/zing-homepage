@@ -137,6 +137,14 @@ body {
 .phone-frame img {
   width: 100%; height: auto; border-radius: 36px;
 }
+.hero-img {
+  position: relative;
+  max-width: 420px;
+  filter: drop-shadow(0 24px 48px rgba(0,0,0,.12));
+}
+.hero-img img {
+  width: 100%; height: auto;
+}
 @keyframes floatPhone {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
@@ -260,8 +268,8 @@ body {
       </div>
     </div>
     <div class="hero-phone anim-in anim-d5">
-      <div class="phone-frame">
-        <img src="assets/app-screen1.png" alt="Zing App">
+      <div class="hero-img">
+        <img src="assets/zing-cart.jpg" alt="Zing cleaning cart">
       </div>
     </div>
   </div>
